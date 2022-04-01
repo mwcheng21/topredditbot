@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>DRP</title>
+		<link rel="icon" type="image/x-icon" href="/static/img/favicon.png">
+
+		<!--font awesome-->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+	
+		<!--jquery-->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+		<!--Bootstrap-->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">		
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+	
+		<style>
+			.hidden-start {
+				
+			display: none;
+			}
+			a{
+				text-decoration: none;
+				color: black;
+				cursor: pointer;
+			}
+			.h-centered-element {
+				margin: auto;
+			}
+			.center {
+			padding-top: 10%;
+			}
+			.fa-solid {
+				font-size: 100px;
+				text-align: center;
+				padding-top: 1rem;
+			}
+			.card{
+				transition: transform 0.2s;
+			}
+			.card:hover {
+			transform: scale(1.25);
+			transform-origin:center;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div style="position: absolute;width: 100%;">
+			<div class="card-body info" style="text-align: right;">
+				<a data-bs-toggle="modal" data-bs-target="#infoModal">
+					<i class="fa-solid fa-circle-info" style="color: white; font-size: 32px; padding-right: 50px;"></i>
+				</a>
+			</div>
+		  </div>
+
+		{% if added == 1 %}
+		<div id="success" class="card text-white bg-success mb-3" style="position: absolute;width: 100%;">
+			<div class="card-body">
+			  <h5 class="card-title">Successfully scheduled</h5>
+			</div>
+		  </div>
+		{% elif added == -1 %}
+		<div id="success" class="card text-white bg-danger mb-3" style="position: absolute;width: 100%;">
+			<div class="card-body">
+			  <h5 class="card-title">You already subscribed to this subreddit</h5>
+			</div>
+		  </div>
+		{% endif %}
+		<div class="container-fluid" style="background-color: #282c34;height: 100vh;">
+			<div class="row centered-element" style="padding-top: 20%;">
+				<div id="1" class="col-sm-12 col-md-6 col-lg-3 hidden-start">
+					<a data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="$('#subreddit').hide();$('#subreddit').attr('value', 'moviedetails')"><div class="card shadow-lg h-centered-element" style="width: 18rem;">
+						<i class="fa-solid fa-film"></i>
+						<div class="card-body">
+						  <h5 class="card-title">Movie Details</h5>
+						  <p class="card-text">Details in Movies, Movie Details!</p>
+						</div>
+					  </div>
+					</a>
+				</div> <!--end card-->
+				<div id="2"  class="col-sm-12 col-md-6 col-lg-3 hidden-start">
+					<a data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="$('#subreddit').hide();$('#subreddit').attr('value', 'todayilearned')"><div class="card shadow-lg h-centered-element" style="width: 18rem;">
+						<i class="fa-solid fa-brain"></i>
+						<div class="card-body">
+						  <h5 class="card-title">Today I learned</h5>
+						  <p class="card-text">You learn something new every day; what did you learn today?</p>
+						</div>
+					  </div>
+					</a>
+				</div> <!--end card-->
+				<div id="3" class="col-sm-12 col-md-6 col-lg-3 hidden-start">
+					<a data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="$('#subreddit').hide();$('#subreddit').attr('value', 'jokes')"><div class="card shadow-lg h-centered-element" style="width: 18rem;">
+						<i class="fa-solid fa-face-smile-wink"></i>
+						<div class="card-body">
+						  <h5 class="card-title">Jokes</h5>
+						  <p class="card-text">Funny jokes. Or at least ones the internet likes.</p>
+						</div>
+					  </div>
+					</a>
+				</div> <!--end card-->
+				<div id="4" class="col-sm-12 col-md-6 col-lg-3 hidden-start">
+					<a data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="$('#subreddit').show();$('#subreddit').attr('value', '')"><div class="card shadow-lg h-centered-element" style="width: 18rem;">
+						<i class="fa-solid fa-gears"></i>
+						<div class="card-body">
+						  <h5 class="card-title">Custom Texts</h5>
+						  <p class="card-text">Get custom subreddit texts! See the top post from any subreddit.</p>
+						</div>
+					  </div>
+					</a>
+				</div> <!--end card-->
+			</div>
+		</div>
+
+  
+  <!-- Modal -->
+  <div class="modal fade center" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h5 class="modal-title" id="exampleModalLabel">Subscribe</h5>
+		  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		</div>
+		<div class="modal-body">
+			<form action="/" method="post">
+				<input type="tel" class="form-control" name="phone" id="phone" pattern="[0-9]{10}|[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890" required>
+				<input type="input" class="form-control" name="subreddit" id="subreddit" value="" style="display: none;" placeholder="r/subreddit">
+				<label for="time">Time to send (EST)</label>
+					<select id="time" name="time">
+					<option value="1">1am</option>
+					<option value="2">2am</option>
+					<option value="3">3am</option>
+					<option value="4">4am</option>
+					<option value="5">5am</option>
+					<option value="6">6am</option>
+					<option value="7">7am</option>
+					<option value="8" selected>8am</option>
+					<option value="9">9am</option>
+					<option value="10">10am</option>
+					<option value="11">11am</option>
+					<option value="12">12am</option>
+					<option value="13">1pm</option>
+					<option value="14">2pm</option>
+					<option value="15">3pm</option>
+					<option value="16">4pm</option>
+					<option value="17">5pm</option>
+					<option value="18">6pm</option>
+					<option value="19">7pm</option>
+					<option value="20">8pm</option>
+					<option value="21">9pm</option>
+					<option value="22">10pm</option>
+					<option value="23">11pm</option>
+					<option value="24">12pm</option>
+					</select>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary">Subscribe</button>
+				</div>
+			</form>
+		</div>
+
+	  </div>
+	</div>
+  </div>
+
+
+    <!-- Modal -->
+	<div class="modal fade center" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h5 class="modal-title" id="exampleModalLabel"><i class="fa-brands fa-reddit"></i> <span>Daily Reddit Post Bot</span></h5>
+			  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<div style="padding-left: 5px;">Subscribe to recieve the daily top post from any subreddit!</div><br>
+				<div style="padding-left: 5px;">How to Use</div>
+
+				<ol>
+					<li>Click a subreddit card, or enter your own custom subreddit</li>
+					<li>Enter your phone number and the time to send each day</li>
+					<li>Get your daily dose of reddit!</li>
+				  </ol>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+			</div>
+		  </div>
+		</div>
+	  </div>
+
+  	<script>
+		  $(document).ready(function() {
+			// executes when HTML-Document is loaded and DOM is ready
+			$("#1").fadeIn('slow')
+			setTimeout(function(){
+				$("#2").fadeIn('slow')
+			}, 250)
+			setTimeout(function(){
+				$("#3").fadeIn('slow')
+			}, 500)
+			setTimeout(function(){
+				$("#4").fadeIn('slow')
+			}, 750)
+			});
+		  setTimeout(function(){
+			$("#success").fadeOut('slow')
+		  }, 5000)
+	  </script>
+
+	</body>
+</html>
