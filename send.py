@@ -8,7 +8,6 @@ import sys
 
 
 def sendText(user):
-    print(1)
     subreddit = user[3]
     to=user[2]
     url = "https://www.reddit.com/r/{{subreddit}}/top.json?limit=1".replace("{{subreddit}}", subreddit)
@@ -20,8 +19,8 @@ def sendText(user):
     src = text["data"]["children"][0]["data"]["url"]
 
     message = "\n" + title + "\n" + body + "\n" + src
-    account_sid = "sid"
-    auth_token = "auth"
+    account_sid = os.environ['TWILIO_ACCOUNT_SID']
+    auth_token = os.environ['TWILIO_AUTH_TOKEN']
     client = Client(account_sid, auth_token)
 
     message = client.messages \

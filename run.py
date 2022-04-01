@@ -23,7 +23,7 @@ def checker():
         time.sleep(360)
 
 if __name__ == "__main__" :
-    app.secret_key = "secret key"
+    app.secret_key = "4b7fef6525314de19e0fd8e589aecb0e5028757476d2313c0c45a3db582a3cde"
 
     x = threading.Thread(target=checker)
     x.start()
