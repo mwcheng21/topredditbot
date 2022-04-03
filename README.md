@@ -1,4 +1,5 @@
 # Daily Reddit Post Bot
+A daily text of top reddit posts  
 Hackathon submission, see it here [https://devpost.com/software/daily-reddit-post-bot](https://devpost.com/software/daily-reddit-post-bot)
 
 ## Inspiration
